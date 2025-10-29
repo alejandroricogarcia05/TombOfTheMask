@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://cv8srwsu8peyw"]
+
+[ext_resource type="Script" uid="uid://c7ys7f7xsr0cb" path="res://scripts/puntos_pequeños.gd" id="1_2fkla"]
+[ext_resource type="Texture2D" uid="uid://b0fnu4xevuf3c" path="res://Textures/Sprites/Water Effect and Bullet 16x16.png" id="2_pmj66"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_npaj8"]
+atlas = ExtResource("2_pmj66")
+region = Rect2(160, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r57r"]
+atlas = ExtResource("2_pmj66")
+region = Rect2(176, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_878w5"]
+atlas = ExtResource("2_pmj66")
+region = Rect2(192, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y53v"]
+atlas = ExtResource("2_pmj66")
+region = Rect2(160, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2bnd"]
+atlas = ExtResource("2_pmj66")
+region = Rect2(176, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whbqj"]
+atlas = ExtResource("2_pmj66")
+region = Rect2(192, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_esb3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_npaj8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r57r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_878w5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y53v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2bnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whbqj")
+}],
+"loop": false,
+"name": &"obtained",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l4435"]
+
+[node name="PuntosPequeños" type="Area2D"]
+script = ExtResource("1_2fkla")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_esb3x")
+animation = &"obtained"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.597389, 0.562407)
+shape = SubResource("CircleShape2D_l4435")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
